@@ -3,9 +3,9 @@ public class Main {
         // Задача 1
         System.out.println("Задача 1");
         {
-            int os = 1;
+            int clientOS = 1; // 0 - iOS, 1 - Андроид
 
-            if (os == 0) {
+            if (clientOS == 0) {
                 // iOS
                 System.out.println("Установите версию приложения для iOS по ссылке");
             } else {
@@ -18,27 +18,35 @@ public class Main {
         // Задача 2
         System.out.println("Задача 2");
         {
-            int os = 1;
-            int year = 2013;
+            int clientOS = 1; // 0 - iOS, 1 - Андроид
+            int clientDeviceYear = 2024;
 
-            if (year < 2015) {
-                if (os == 0) {
-                    // iOS
-                    System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-                } else {
-                    // Android
-                    System.out.println("Установите облегченную версию приложения для Android по ссылке");
-                }
-            } else {
-                if (os == 0) {
-                    // iOS
-                    System.out.println("Установите версию приложения для iOS по ссылке");
-                } else {
-                    // Android
-                    System.out.println("Установите версию приложения для Android по ссылке");
-                }
+            // версия системы
+            byte versionOS = 0; // начальное значение 00B - облегченная для iOS
+
+            // iOS или Андроид?
+            if (clientOS == 1) {
+                versionOS += 1; // устанавливаем 0-й бит, если Андроид
             }
 
+            // современная или облегченная?
+            if (clientDeviceYear >= 2015) {
+                versionOS += 2; // устанавливаем 1-й бит, если современная
+            }
+
+            switch (versionOS) {
+                case 0:
+                    System.out.println("Установите облегченную версию приложения для iOS по ссылке");
+                    break;
+                case 1:
+                    System.out.println("Установите облегченную версию приложения для Android по ссылке");
+                    break;
+                case 2:
+                    System.out.println("Установите версию приложения для iOS по ссылке");
+                    break;
+                default:
+                    System.out.println("Установите версию приложения для Android по ссылке");
+            }
         }
         System.out.println("--------------");
 
